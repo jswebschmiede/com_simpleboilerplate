@@ -89,6 +89,12 @@ class SimpleboilerplateNomenuRules implements RulesInterface
 		$menu = $this->router->menu;
 		$matchingMenuItem = $menu->getItem($query['Itemid'] ?? null);
 
+		// If limitstart for pagination is set, unset view
+		if (isset($query['limitstart'])) {
+			unset($query['view']);
+			return;
+		}
+
 		// If a matching menu item was found
 		if (
 			$matchingMenuItem &&
