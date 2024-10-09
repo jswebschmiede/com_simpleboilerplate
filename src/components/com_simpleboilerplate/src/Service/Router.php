@@ -21,6 +21,7 @@ use Joomla\CMS\Component\Router\Rules\NomenuRules;
 use Joomla\CMS\Categories\CategoryFactoryInterface;
 use Joomla\CMS\Component\Router\Rules\StandardRules;
 use Joomla\CMS\Component\Router\RouterViewConfiguration;
+use Joomla\Component\Simpleboilerplate\Site\Service\SimpleboilerplateNomenuRules;
 
 // phpcs:disable PSR1.Files.SideEffects
 \defined('_JEXEC') or die;
@@ -47,16 +48,7 @@ class Router extends RouterView
      *
      * @since   4.0.0
      */
-    private CategoryFactoryInterface $categoryFactory;
-
-    /**
-     * The category cache
-     *
-     * @var  array
-     *
-     * @since  4.0.0
-     */
-    private array $categoryCache = [];
+    private ?CategoryFactoryInterface $categoryFactory = null;
 
     /**
      * The db
@@ -65,18 +57,19 @@ class Router extends RouterView
      *
      * @since  4.0.0
      */
-    private DatabaseInterface $db;
+    private ?DatabaseInterface $db = null;
 
     /**
-     * Content Component router constructor
+     * Simpleboilerplate Component router constructor
      *
      * @param   SiteApplication           $app              The application object
      * @param   AbstractMenu              $menu             The menu object to work with
      * @param   CategoryFactoryInterface  $categoryFactory  The category object
      * @param   DatabaseInterface         $db               The database object
      */
-    public function __construct(SiteApplication $app, AbstractMenu $menu, CategoryFactoryInterface $categoryFactory, DatabaseInterface $db)
+    public function __construct(SiteApplication $app, AbstractMenu $menu, ?CategoryFactoryInterface $categoryFactory, ?DatabaseInterface $db)
     {
+        $this->categoryFactory = $categoryFactory;
         $this->db = $db;
 
         $params = ComponentHelper::getParams('com_simpleboilerplate');
@@ -95,6 +88,7 @@ class Router extends RouterView
         $this->attachRule(new MenuRules($this));
         $this->attachRule(new StandardRules($this));
         $this->attachRule(new NomenuRules($this));
+        $this->attachRule(new SimpleboilerplateNomenuRules($this));
     }
 
     /**
