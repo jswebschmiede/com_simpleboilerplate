@@ -68,9 +68,7 @@ class HtmlView extends BaseHtmlView
 		$this->pagination->hideEmptyLimitstart = true;
 
 		foreach ($this->items as &$item) {
-			$slug = preg_replace('/[^a-z\d]/i', '-', $item->name);
-			$slug = strtolower(str_replace(' ', '-', $slug));
-			$item->link = Route::_(RouteHelper::getSimpleboilerplateRoute($item->id, $slug));
+			$item->link = Route::_(RouteHelper::getSimpleboilerplateRoute($item->id, $item->alias));
 		}
 
 		// Check for errors.
