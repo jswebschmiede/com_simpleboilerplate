@@ -11,6 +11,7 @@
 namespace Joomla\Component\Simpleboilerplate\Site\View\Simpleboilerplates;
 
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\MVC\View\GenericDataException;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\Component\Simpleboilerplate\Site\Helper\RouteHelper;
 
@@ -38,14 +39,6 @@ class HtmlView extends BaseHtmlView
 	protected $params;
 
 	/**
-	 * The ID of the item
-	 *
-	 * @var    int
-	 * @since  1.6
-	 */
-	protected $item_id;
-
-	/**
 	 * The pagination object
 	 *
 	 * @var    \Joomla\CMS\Pagination\Pagination
@@ -64,14 +57,25 @@ class HtmlView extends BaseHtmlView
 
 	public function display($tpl = null): void
 	{
-		$this->items = $this->get('Items');
 		$this->state = $this->get('State');
 		$this->params = $this->state->get('params');
+		$this->items = $this->get('Items');
+		$this->filterForm = $this->get('FilterForm');
+		$this->activeFilters = $this->get('ActiveFilters');
 		$this->pagination = $this->get('Pagination');
 
+		// Flag indicates to not add limitstart=0 to URL
+		$this->pagination->hideEmptyLimitstart = true;
+
 		foreach ($this->items as &$item) {
-			$item->slug = $item->alias ? ($item->id . ':' . $item->alias) : $item->id;
-			$item->link = Route::_(RouteHelper::getSimpleboilerplateRoute($item->id, $item->language));
+			$slug = preg_replace('/[^a-z\d]/i', '-', $item->name);
+			$slug = strtolower(str_replace(' ', '-', $slug));
+			$item->link = Route::_(RouteHelper::getSimpleboilerplateRoute($item->id, $slug));
+		}
+
+		// Check for errors.
+		if (count($errors = $this->get('Errors'))) {
+			throw new GenericDataException(implode("\n", $errors), 500);
 		}
 
 		parent::display($tpl);

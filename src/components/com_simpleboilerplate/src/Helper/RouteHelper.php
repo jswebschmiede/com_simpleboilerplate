@@ -36,10 +36,10 @@ abstract class RouteHelper
      *
      * @since   1.5
      */
-    public static function getSimpleboilerplateRoute($id, $language = null, $layout = null): string
+    public static function getSimpleboilerplateRoute($id, $slug, $language = null, $layout = null): string
     {
         // Create the link
-        $link = 'index.php?option=com_simpleboilerplate&view=boilerplate&id=' . $id;
+        $link = 'index.php?option=com_simpleboilerplate&view=simpleboilerplate&id=' . $id . '&slug=' . $slug;
 
         if (!empty($language) && $language !== '*' && Multilanguage::isEnabled()) {
             $link .= '&lang=' . $language;
