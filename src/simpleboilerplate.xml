@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="component"
+           method="upgrade">
+    <name>com_simpleboilerplate</name>
+    <version>1.0.0</version>
+    <description>COM_SIMPLEBOILERPLATE_XML_DESCRIPTION</description>
+    <author>[Your Name]</author>
+    <creationDate>[YYYY-MM-DD]</creationDate>
+    <copyright>(C) [Year] [Your Name]. All rights reserved.</copyright>
+    <license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+    <namespace path="src">Joomla\Component\Simpleboilerplate</namespace>
+
+    <!-- Runs on install -->
+    <install>
+        <sql>
+            <file driver="mysql"
+                  charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+
+    <!-- Runs on uninstall -->
+    <uninstall>
+        <sql>
+            <file driver="mysql"
+                  charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+
+    <administration>
+        <files folder="administrator/components/com_simpleboilerplate">
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <folder>tmpl</folder>
+            <folder>forms</folder>
+            <folder>services</folder>
+            <folder>sql</folder>
+            <folder>src</folder>
+        </files>
+
+        <languages folder="administrator/components/com_simpleboilerplate/language">
+            <language tag="en-GB">en-GB/com_simpleboilerplate.ini</language>
+            <language tag="en-GB">en-GB/com_simpleboilerplate.sys.ini</language>
+        </languages>
+
+        <menu>COM_SIMPLEBOILERPLATE</menu>
+
+        <submenu>
+            <menu link="option=com_simpleboilerplate&amp;view=simpleboilerplates"
+                  view="boilerplates">
+                COM_SIMPLEBOILERPLATE_MENU_BOILERPLATE
+            </menu>
+        </submenu>
+    </administration>
+
+    <files folder="components/com_simpleboilerplate">
+        <folder>src</folder>
+        <folder>tmpl</folder>
+    </files>
+    <!-- 
+    <languages folder="language">
+        <language tag="en-GB">en-GB/com_simpleboilerplate.ini</language>
+    </languages> -->
+
+    <media destination="com_simpleboilerplate"
+           folder="media/com_simpleboilerplate">
+        <filename>joomla.asset.json</filename>
+        <folder>js</folder>
+        <folder>css</folder>
+    </media>
+</extension>

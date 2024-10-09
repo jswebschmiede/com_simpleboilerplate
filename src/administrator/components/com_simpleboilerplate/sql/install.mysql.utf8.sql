@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS `#__simpleboilerplate_simpleboilerplate` (
+	`id` int(10) NOT NULL AUTO_INCREMENT,
+	`name` varchar(255) NOT NULL,
+	`alias` varchar(400) NOT NULL DEFAULT '',
+	`description` text,
+	`created` datetime NOT NULL,
+	`language` varchar(7) NOT NULL,
+	`created_by` int(10) unsigned NOT NULL DEFAULT 0,
+	`created_by_alias` varchar(255) NOT NULL,
+	`metakey` text NOT NULL,
+	`own_prefix` tinyint(1) NOT NULL DEFAULT 0,
+	`metakey_prefix` varchar(255) NOT NULL,
+	`modified` datetime NOT NULL,
+	`modified_by` int(10) unsigned NOT NULL DEFAULT 0,
+	`version` int(10) unsigned NOT NULL DEFAULT 1,
+	`ordering` int(10) NOT NULL DEFAULT 0,
+	`state` tinyint(1) NOT NULL DEFAULT 0,
+	INDEX `idx_state` (`state`),
+	INDEX `idx_language` (`language`),
+	PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 DEFAULT COLLATE = utf8mb4_unicode_ci;
