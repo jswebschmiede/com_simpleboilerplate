@@ -24,6 +24,9 @@ $wa->useScript('keepalive')
 	->useScript('form.validate')
 	->useScript('com_contenthistory.admin-history-versions');
 
+$wa->useScript('component.simpleboilerplate.admin');
+$wa->useStyle('component.simpleboilerplate.admin');
+
 $state = $this->getState();
 $item = $this->getItem();
 $form = $this->getForm();

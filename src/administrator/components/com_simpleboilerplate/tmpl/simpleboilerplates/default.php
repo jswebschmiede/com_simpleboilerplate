@@ -23,6 +23,8 @@ defined('_JEXEC') or die;
 $wa = $this->document->getWebAssetManager();
 $wa->useScript('table.columns')
 	->useScript('multiselect');
+$wa->useScript('component.simpleboilerplate.admin');
+$wa->useStyle('component.simpleboilerplate.admin');
 
 $state = $this->getState();
 $items = $this->getItems();

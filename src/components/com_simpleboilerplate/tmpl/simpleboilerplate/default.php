@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @package     com_roombooking
+ * @package     com_simpleboilerplate
  * @version     1.0.0
  * @copyright   Copyright (C) 2024. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @license     MIT License (MIT) see LICENSE.txt
  * @author      Jörg Schöneburg <info@joerg-schoeneburg.de> - https://joerg-schoeneburg.de
  */
 
@@ -14,12 +14,12 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 
-/** @var \Joomla\Component\RoomBooking\Site\View\Room\HtmlView $this */
+/** @var \Joomla\Component\Simpleboilerplate\Site\View\Simpleboilerplate\HtmlView $this */
 
 /** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
 $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
-$wa->useScript('com_simpleboilerplate.main');
-$wa->useStyle('com_simpleboilerplate.style');
+$wa->useScript('component.simpleboilerplate.site');
+$wa->useStyle('component.simpleboilerplate.site');
 ?>
 
 <?php if ($this->params->get('show_page_heading')): ?>
