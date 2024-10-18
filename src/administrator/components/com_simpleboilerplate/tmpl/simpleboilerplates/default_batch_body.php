@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @package     Joomla.Administrator
- * @subpackage  com_banners
- *
- * @copyright   (C) 2015 Open Source Matters, Inc. <https://www.joomla.org>
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @package     com_simpleboilerplate
+ * @version     1.0.0
+ * @copyright   Copyright (C) 2024. All rights reserved.
+ * @license     MIT License (MIT) see LICENSE.txt
+ * @author      Jörg Schöneburg <info@joerg-schoeneburg.de> - https://joerg-schoeneburg.de
  */
 
 defined('_JEXEC') or die;
