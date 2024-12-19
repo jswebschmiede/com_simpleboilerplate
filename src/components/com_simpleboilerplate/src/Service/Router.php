@@ -89,4 +89,97 @@ class Router extends RouterView
         $this->attachRule(new StandardRules($this));
         $this->attachRule(new NomenuRules($this));
     }
+
+    /**
+     * Method to get the segment(s) for an article
+     *
+     * @param   string  $id     ID of the article to retrieve the segments for
+     * @param   array   $query  The request that is built right now
+     *
+     * @return  array|string  The segments of this item
+     */
+    public function getSimpleboilerplateSegment($id, $query)
+    {
+        if (!strpos($id, ':')) {
+            $id = (int) $id;
+            $alias = $this->getAlias($id);
+            if ($alias) {
+                $id .= ':' . $alias;
+            }
+        }
+
+        if ($this->noIDs) {
+            list($void, $segment) = explode(':', $id, 2);
+            return [$void => $segment];
+        }
+
+        return [(int) $id => $id];
+    }
+
+    /**
+     * Method to get the segment(s) for a form
+     *
+     * @param   string  $id     ID of the article form to retrieve the segments for
+     * @param   array   $query  The request that is built right now
+     *
+     * @return  array|string  The segments of this item
+     *
+     * @since   3.7.3
+     */
+    public function getFormSegment($id, $query): array|string
+    {
+        return $this->getSimpleboilerplateSegment($id, $query);
+    }
+
+    /**
+     * Method to get the segment(s) for an article
+     *
+     * @param   string  $segment  Segment of the article to retrieve the ID for
+     * @param   array   $query    The request that is parsed right now
+     *
+     * @return  mixed   The id of this item or false
+     */
+    public function getSimpleboilerplateId($segment, $query): int
+    {
+        if ($this->noIDs) {
+            $dbquery = $this->db->getQuery(true);
+            $dbquery->select($this->db->quoteName('id'))
+                ->from($this->db->quoteName('#__simpleboilerplate_simpleboilerplate'))
+                ->where(
+                    [
+                        $this->db->quoteName('alias') . ' = :alias',
+                    ]
+                )
+                ->bind(':alias', $segment);
+            $this->db->setQuery($dbquery);
+
+            return (int) $this->db->loadResult();
+        }
+
+        return (int) $segment;
+    }
+
+    /**
+     * Get the alias for an ID
+     *
+     * @param   int  $id  The ID to get the alias for
+     *
+     * @return  string  The alias
+     */
+    private function getAlias(int $id): string
+    {
+        $query = $this->db->getQuery(true)
+            ->select($this->db->quoteName('alias'))
+            ->from($this->db->quoteName('#__simpleboilerplate_simpleboilerplate'))
+            ->where($this->db->quoteName('id') . ' = :id')
+            ->bind(':id', $id, ParameterType::INTEGER);
+
+        $this->db->setQuery($query);
+
+        try {
+            return $this->db->loadResult() ?: '';
+        } catch (\RuntimeException $e) {
+            throw new \RuntimeException($e->getMessage(), $e->getCode());
+        }
+    }
 }
