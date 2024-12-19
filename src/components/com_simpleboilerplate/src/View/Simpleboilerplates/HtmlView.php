@@ -68,7 +68,8 @@ class HtmlView extends BaseHtmlView
 		$this->pagination->hideEmptyLimitstart = true;
 
 		foreach ($this->items as &$item) {
-			$item->link = Route::_(RouteHelper::getSimpleboilerplateRoute($item->id, $item->alias));
+			$item->slug = $item->alias ? ($item->id . ':' . $item->alias) : $item->id;
+			$item->link = Route::_(RouteHelper::getSimpleboilerplateRoute($item->slug, $item->language));
 		}
 
 		// Check for errors.

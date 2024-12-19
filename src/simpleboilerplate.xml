@@ -58,7 +58,7 @@
         <folder>tmpl</folder>
     </files>
 
-    <languages folder="language">
+    <languages folder="components/com_simpleboilerplate/language">
         <language tag="en-GB">en-GB/com_simpleboilerplate.ini</language>
     </languages>
 

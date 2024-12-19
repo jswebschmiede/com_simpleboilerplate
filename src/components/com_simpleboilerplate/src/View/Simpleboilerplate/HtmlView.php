@@ -13,8 +13,10 @@ namespace Joomla\Component\Simpleboilerplate\Site\View\Simpleboilerplate;
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\MVC\View\GenericDataException;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
+use Joomla\Component\Simpleboilerplate\Site\Helper\RouteHelper;
 
 /**
  * HTML Simpleboilerplate View class for the Simpleboilerplate component
@@ -66,12 +68,6 @@ class HtmlView extends BaseHtmlView
 		if (\count($errors = $this->get('Errors'))) {
 			throw new GenericDataException(implode("\n", $errors), 500);
 		}
-
-		// Create a shortcut for $item.
-		$item = $this->item;
-
-		// Add router helpers.
-		$item->slug = $item->alias ? ($item->id . ':' . $item->alias) : $item->id;
 
 		return parent::display($tpl);
 	}

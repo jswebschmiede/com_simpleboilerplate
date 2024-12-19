@@ -11,7 +11,9 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
+use Joomla\Component\Simpleboilerplate\Site\Helper\RouteHelper;
 
 /** @var \Joomla\Component\Simpleboilerplate\Site\View\Simpleboilerplates\HtmlView $this */
 
