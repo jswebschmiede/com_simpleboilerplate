@@ -22,7 +22,7 @@ use Joomla\CMS\Extension\Service\Provider\ComponentDispatcherFactory;
 use Joomla\Component\Simpleboilerplate\Administrator\Extension\SimpleboilerplateComponent;
 
 // Load Composer autoloader
-// require_once JPATH_ADMINISTRATOR . '/components/com_simpleboilerplate/vendor/autoload.php';
+require_once JPATH_ADMINISTRATOR . '/components/com_simpleboilerplate/dependencies/vendor/autoload.php';
 
 /**
  * The simpleboilerplate service provider.
