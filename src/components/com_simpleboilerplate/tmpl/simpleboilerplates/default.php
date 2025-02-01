@@ -11,9 +11,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
-use Joomla\Component\Simpleboilerplate\Site\Helper\RouteHelper;
 
 /** @var \Joomla\Component\Simpleboilerplate\Site\View\Simpleboilerplates\HtmlView $this */
 
@@ -21,6 +19,7 @@ use Joomla\Component\Simpleboilerplate\Site\Helper\RouteHelper;
 $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
 $wa->useScript('component.simpleboilerplate.site');
 $wa->useStyle('component.simpleboilerplate.site');
+
 ?>
 
 <div class="com_simpleboilerplate boilerplates">
