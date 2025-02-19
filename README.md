@@ -21,6 +21,7 @@ Simpleboilerplate is a base component for Joomla, serving as a starting point fo
 -   pnpm (can be installed globally with `npm install -g pnpm`)
 -   Joomla 5.x or higher (tested with Joomla 5.0)
 -   PHP 8.3 or higher (tested with PHP 8.3)
+-   Make (optional, but recommended). If not installed on Debian/Ubuntu use `sudo apt-get update && sudo apt-get install make`.
 
 ## Installation
 
@@ -42,13 +43,27 @@ Simpleboilerplate is a base component for Joomla, serving as a starting point fo
     pnpm install
     ```
 
-4. Install Composer dependencies:
+4. Install Composer dependencies (if needed uncomment the autoload.php in the services/provider.php file and the dependencies folder in simpleboilerplate.xml):
 
     ```
-    composer install
+    composer install (or make install)
     ```
 
 ## Usage
+
+### Make Commands
+
+The Makefile is used to install the dependencies and scope the dependencies.
+
+```
+make all # install dependencies, scope dependencies and dump autoload
+make clean # clean the dependencies and the scoped dependencies
+make dump # dump the autoload
+make install # install the dependencies
+make scope # scope the dependencies
+make delvendor # delete the vendor folder
+make deldependencies # delete the scoped dependencies
+```
 
 ### Development Mode
 
