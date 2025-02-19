@@ -35,7 +35,7 @@
             <folder>services</folder>
             <folder>sql</folder>
             <folder>src</folder>
-            <folder>dependencies</folder>
+            <!-- <folder>dependencies</folder> -->
         </files>
 
         <languages folder="administrator/components/com_simpleboilerplate/language">
