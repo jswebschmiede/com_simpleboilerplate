@@ -192,7 +192,7 @@ module.exports = (env, argv) => {
             ...(isProduction
                 ? [
                       new ZipPlugin({
-                          path: path.resolve(__dirname, 'dist'),
+                          path: path.resolve(__dirname, 'dist/zip'),
                           filename: 'com_simpleboilerplate.zip',
                           extension: 'zip',
                           fileOptions: {
