@@ -12,7 +12,8 @@ Simpleboilerplate is a base component for Joomla, serving as a starting point fo
 -   Progress display during the build process
 -   Automatic creation of ZIP archives for easy installation
 -   Automatic copying of files to your Joomla installation
--   Composer support (if needed uncomment the autoload.php in the services/provider.php file and the vendor folder in simpleboilerplate.xml)
+-   Composer support (if needed uncomment the autoload.php in the services/provider.php file and the dependencies folder in simpleboilerplate.xml)
+-   Scoped dependencies
 -   Category support (if not needed, look at https://github.com/jswebschmiede/com_boilerplate)
 
 ## Prerequisites
@@ -56,13 +57,13 @@ Simpleboilerplate is a base component for Joomla, serving as a starting point fo
 The Makefile is used to install the dependencies and scope the dependencies.
 
 ```
-make all # install dependencies, scope dependencies and dump autoload
-make clean # clean the dependencies and the scoped dependencies
+make all # install dependencies, scope dependencies, dump autoload and remove vendor folderq
+make clean # remove vendor folder and the scoped dependencies folder
 make dump # dump the autoload
 make install # install the dependencies
 make scope # scope the dependencies
 make delvendor # delete the vendor folder
-make deldependencies # delete the scoped dependencies
+make deldependencies # delete the scoped dependencies folder
 ```
 
 ### Development Mode
@@ -107,13 +108,15 @@ This creates an optimized version of the component and packages it into a ZIP fi
 -   `tailwind.config.js`: Tailwind CSS configuration
 -   `composer.json`: Composer configuration
 -   `package.json`: Project dependencies and scripts
+-   `makefile`: Makefile
+-   `scoper.inc.php`: Scoper configuration
 
 ## Customization
 
 You can customize the component by editing the files in the `src/` directory. The main customization points are:
 
 -   replace all occurences of `com_simpleboilerplate` with your component name, don't forget to change the name in the `package.json` file, the `webpack.config.js` file and the `composer.json` file too
--   replace all occurences of `Simpleboilerplate` and `boilerplate` with your component name
+-   replace all occurences of `Simpleboilerplate` and `simpleboilerplate` with your component name
 
 ## Contributing
 
