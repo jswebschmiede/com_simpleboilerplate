@@ -14,7 +14,7 @@ Simpleboilerplate is a base component for Joomla, serving as a starting point fo
 -   Automatic copying of files to your Joomla installation
 -   Composer support (if needed uncomment the autoload.php in the services/provider.php file and the dependencies folder in simpleboilerplate.xml)
 -   Scoped dependencies
--   Category support (if not needed, look at https://github.com/jswebschmiede/com_boilerplate)
+-   No Category support (if needed, look at https://github.com/jswebschmiede/com_boilerplate)
 
 ## Prerequisites
 
